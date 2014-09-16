@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+    <head>
+        <title>Populate Second Dropdown based on the Selection of the First One using JavaScript</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <style type="text/css" media="all">
+            /* Miroslav Georgiev */
+            div
+            {
+                margin: 10px;
+            }
+            div, select
+            {
+                font-size: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <label for="ddone">Select a Brand: </label>
+            <select id="ddone" name="ddone">
+                <option value="">--Select--</option>
+            </select>
+        </div>
+        <div>
+            <label for="ddtwo">Select a Model: </label>
+            <select id="ddtwo" name="ddtwo" disabled>
+                <option value="">Please select a brand first</option>
+            </select>
+        </div>
+        <script type="text/javascript">
+            // Miroslav Georgiev
+            // javascript to populate a second dropdown based on the selection of the one
+            
+            var selectionOne = document.getElementById("ddone");
+            var selectionTwo = document.getElementById("ddtwo");
+            var arrBikeBrands = ["Suzuki|sz", "Yamaha|ym", "Ducati|dc"];
+            var objBikeModels = {
+                "sz":["GSX-R600|r600", "GSX-R750|r750", "GSX-R1000|r1000", "GSX-R1250|r1250", "Hayabusa|hbs"],
+                "ym":["YZF-R6|r6", "YZF-R1|r1", "FZ1|fz1", "FZ-09|fz09", "FZ6R|fz6r"],
+                "dc":["899 Panigale|899p", "1199 Panigale|1199p", "1199 Panigale S|1199ps", "1199 Panigale R|1199pr"]
+            };
+            
+            // populate the first drop down
+            for (var i = 0, len = arrBikeBrands.length; i < len; i++)
+                selectionOne.options[selectionOne.options.length] = new Option(arrBikeBrands[i].split("|")[0], arrBikeBrands[i].split("|")[1]);
+            
+            // attach events to the elements
+            // check if the browser supports addEventListener first
+            if (window.attachEvent)
+                selectionOne.attachEvent("onchange", function(){handleDropDownSelection(selectionOne, selectionTwo, objBikeModels);}, false); // for IE8-
+            else
+                selectionOne.addEventListener("change", function(){handleDropDownSelection(selectionOne, selectionTwo, objBikeModels);}, false); // for all IE9+, FF, Chrome, Opera, Safari
+            
+            // handle drop down selection
+            function handleDropDownSelection(sel1, sel2, arr)
+            {
+                var currentIndex = sel1.selectedIndex; // get the currently selected index in the first drop down
+                var currentValue = sel1.options[currentIndex].value; // get the currently selected value in the first drop down
+                var currentText = sel1.options[currentIndex].text; // get the currently selected text in the first drop down
+                var opts = arr[currentValue]; // get the matching array for the second drop down based on the selected value in the first drop down
+                
+                // first clear the drop down before populating it with new values
+                if (sel2.length > 1)
+                    clearDropDown(sel2);
+                
+                if (opts)
+                {
+                    // populate the second drop down with the appropriate options
+                    sel2.options[0].text = "--Select--";
+                    sel2.options[0].value = "";
+                    sel2.disabled = false;
+                    for (var i = 0, len = opts.length; i < len; i++)
+                        sel2.options[sel2.options.length] = new Option(opts[i].split("|")[0], opts[i].split("|")[1], false, false);
+                }
+                else
+                {
+                    // disable the second drop down and reset the selection
+                    sel2.disabled = true;
+                    sel2.selectedIndex = 0;
+                    sel2.options[0].text = "Please select a brand first";
+                    sel2.options[0].value = "";
+                }
+            }
+            
+            // clear drop downs (clears everything from the second option to the end)
+            function clearDropDown(elm)
+            {
+                elm.length = 1;
+            }
+        </script>
+    </body>
+</html>

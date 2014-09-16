@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+    <head>
+        <title>Get and Sum the Values of Element's Children using JavaScript</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <style type="text/css" media="all">
+            /* Miroslav Georgiev */
+            td
+            {
+                font-size: 20px;
+                text-align: center;
+                width: 15px;
+            }
+            td:last-child, ul li:last-child
+            {
+                color: green;
+            }
+            ul
+            {
+                margin: 0;
+                padding: 0;
+            }
+            ul li
+            {
+                display: inline-block;
+                font-size: 20px;
+                list-style-type: none;
+                text-align: center;
+                width: 25px;
+            }
+        </style>
+    </head>
+    <body>
+        <h3>Table:</h3>
+        <table>
+            <tr><td>2</td><td>+</td><td>2</td><td>+</td><td>3</td><td></td><td></td><td>=</td><td></td></tr>
+            <tr><td>4</td><td>+</td><td>8</td><td colspan="4"></td><td>=</td><td></td></tr>
+            <tr><td>12</td><td>+</td><td>17</td><td>+</td><td>25</td><td>+</td><td>27</td><td>=</td><td></td></tr>
+        </table>
+        <hr />
+        <h3>List:</h3>
+        <ul><li>2</li><li>+</li><li>2</li><li>=</li><li></li></ul>
+        <ul><li>3</li><li>+</li><li>7</li><li>+</li><li>10</li><li>=</li><li></li></ul>
+        <ul><li>12</li><li>+</li><li>27</li><li></li><li>=</li><li></li></ul>
+        <script type="text/javascript">
+            // Miroslav Georgiev
+            // javascript to loop through the children of an element (ignoring white spaces), get their values, sum them up and display the sum in the last child
+            
+            //define the elements
+            var trs = document.getElementsByTagName("tr");
+            var uls = document.getElementsByTagName("ul");
+            
+            // call the function and pass the element we need
+            handleCalculation(trs);
+            handleCalculation(uls);
+            
+            // handle the calculation by accepting the desired element
+            function handleCalculation(elm)
+            {
+                for (var i = 0, m = elm.length; i < m; i++)
+                {
+                    var nums = []; // an array to hold the children values
+                    var len = elm[i].childNodes.length; // get the number of children including white spaces)
+                    
+                    // loop through the children values to get the value of each node, get rid of white spaces (if there are any) and push it to the nums array
+                    for (var j = 0; j < len; j++)
+                    {
+                        // check for whitespaces and ignore them
+                        if (elm[i].childNodes[j].nodeType !== 3)
+                            nums.push(elm[i].childNodes[j]);
+                    }
+                    
+                    var sum = 0; // variable to store the sum
+                    var numsLen = nums.length; // hold the length so we can update the last child with the sum
+                    
+                    // loop through the children value to calculate the sum
+                    for (var j = 0; j < numsLen; j++)
+                    {
+                        // check if the current child has a value and that value is a number and add it to the sum
+                        if (nums[j].childNodes.length > 0 && !isNaN(parseInt(nums[j].childNodes[0].nodeValue)))
+                            sum += parseInt(nums[j].childNodes[0].nodeValue, 10);
+                    }
+                    nums[numsLen - 1].innerHTML = sum; // populate the last child with the sum
+                }
+            }
+        </script>
+    </body>
+</html>
