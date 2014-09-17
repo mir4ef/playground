@@ -1,2 +1,112 @@
-/* Author : Miroslav Georgiev */
+/* Miroslav Georgiev */
 
+@-ms-viewport{width: device-width;}
+@-o-viewport {width: device-width;}
+/*********************************************/
+/*            Common Declarations            */
+/*********************************************/
+*
+{
+    margin: 0px;
+    padding: 0px;
+}
+html
+{
+    background: #000;
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0;
+    text-align: left;
+}
+body
+{
+    margin: 0px auto;
+    max-width: 1000px;
+    position: relative;
+}
+form
+{
+    padding: 5px;
+}
+label
+{
+    display: inline-block;
+    font-size: 14px;
+    margin-right: 5px;
+    width: 120px;
+}
+/*********************************************/
+/*               Dropdown Menu               */
+/*********************************************/
+.row
+{
+    margin-bottom: 10px;
+}
+.dropdown-menu
+{
+    display: inline-block;
+    font-size: 14px;
+    position: relative;
+}
+.dropdown-menu a.current-selection
+{
+    border-radius: 3px;
+    min-width: 120px;
+}
+.dropdown-menu img
+{
+    cursor: pointer;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+}
+.dropdown-menu ul
+{
+    background-color: #eee;
+    border: 1px solid #c2c2c2;
+    border-radius: 3px;
+    display: none;
+    left: 0;
+    list-style-type: none;
+    position: absolute;
+    top: 2px;
+    z-index: 100;
+}
+.dropdown-menu ul li
+{
+    border-bottom: 1px solid #000;
+    margin: 2px 0px;
+    min-width: 155px;
+}
+.dropdown-menu ul li:last-child
+{
+    border-bottom: 0;
+}
+.dropdown-menu a.current-selection, .dropdown-menu ul li a
+{
+    background-color: #e9eaea;
+    color: #707070;
+    cursor: pointer;
+    display: block;
+    margin: 2px 0;
+    padding: 5px;
+    text-decoration: none;
+}
+.dropdown-menu a.current-selection
+{
+    padding-right: 30px;
+}
+.dropdown-menu a.current-selection:visited, .dropdown-menu ul li a:visited
+{
+    color: #707070;
+}
+.dropdown-menu ul li.selected a
+{
+    background-color: #bbb;
+    color: #000;
+}
+.dropdown-menu ul li a:hover
+{
+    background-color: #a3fd48;
+    color: #000;
+}

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dropdowns>
+    <dropdown>
+        <label>Select a Bike</label>
+        <options>
+            <option>--Select--</option>
+            <option>Ducati</option>
+            <option>Honda</option>
+            <option>Kawasaki</option>
+            <option>Suzuki</option>
+            <option>Yamaha</option>
+        </options>
+    </dropdown>
+    <dropdown>
+        <label>Select a Car</label>
+        <options>
+            <option>--Select--</option>
+            <option>Audi</option>
+            <option>BMW</option>
+            <option>Jaguar</option>
+            <option>Mercedes-Benz</option>
+            <option>Porche</option>
+        </options>
+    </dropdown>
+    <dropdown>
+        <label>Select Chocolate</label>
+        <options>
+            <option>--Select--</option>
+            <option>Godiva</option>
+            <option>Ferrero Rocher</option>
+            <option>Lindt</option>
+            <option>Milka</option>
+            <option>Nutella</option>
+        </options>
+    </dropdown>
+</dropdowns>
