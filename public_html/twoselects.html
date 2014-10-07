@@ -31,7 +31,7 @@
         </div>
         <script type="text/javascript">
             // Miroslav Georgiev
-            // javascript to populate a second dropdown based on the selection of the one
+            // javascript to populate a second dropdown based on the selection of the first one
             
             var selectionOne = document.getElementById("ddone");
             var selectionTwo = document.getElementById("ddtwo");
@@ -54,33 +54,33 @@
                 selectionOne.addEventListener("change", function(){handleDropDownSelection(selectionOne, selectionTwo, objBikeModels);}, false); // for all IE9+, FF, Chrome, Opera, Safari
             
             // handle drop down selection
-            function handleDropDownSelection(sel1, sel2, arr)
+            function handleDropDownSelection(firstSelect, secondSelect, arrOptions)
             {
-                var currentIndex = sel1.selectedIndex; // get the currently selected index in the first drop down
-                var currentValue = sel1.options[currentIndex].value; // get the currently selected value in the first drop down
-                var currentText = sel1.options[currentIndex].text; // get the currently selected text in the first drop down
-                var opts = arr[currentValue]; // get the matching array for the second drop down based on the selected value in the first drop down
+                var currentIndex = firstSelect.selectedIndex; // get the currently selected index in the first drop down
+                var currentValue = firstSelect.options[currentIndex].value; // get the currently selected value in the first drop down
+                var currentText = firstSelect.options[currentIndex].text; // get the currently selected text in the first drop down
+                var opts = arrOptions[currentValue]; // get the matching array for the second drop down based on the selected value in the first drop down
                 
                 // first clear the drop down before populating it with new values
-                if (sel2.length > 1)
-                    clearDropDown(sel2);
+                if (secondSelect.length > 1)
+                    clearDropDown(secondSelect);
                 
                 if (opts)
                 {
                     // populate the second drop down with the appropriate options
-                    sel2.options[0].text = "--Select--";
-                    sel2.options[0].value = "";
-                    sel2.disabled = false;
+                    secondSelect.options[0].text = "--Select--";
+                    secondSelect.options[0].value = "";
+                    secondSelect.disabled = false;
                     for (var i = 0, len = opts.length; i < len; i++)
-                        sel2.options[sel2.options.length] = new Option(opts[i].split("|")[0], opts[i].split("|")[1], false, false);
+                        secondSelect.options[secondSelect.options.length] = new Option(opts[i].split("|")[0], opts[i].split("|")[1], false, false);
                 }
                 else
                 {
                     // disable the second drop down and reset the selection
-                    sel2.disabled = true;
-                    sel2.selectedIndex = 0;
-                    sel2.options[0].text = "Please select a brand first";
-                    sel2.options[0].value = "";
+                    secondSelect.disabled = true;
+                    secondSelect.selectedIndex = 0;
+                    secondSelect.options[0].text = "Please select a brand first";
+                    secondSelect.options[0].value = "";
                 }
             }
             

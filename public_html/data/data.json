@@ -2,32 +2,35 @@
     "name": "Miro",
     "siteName": "Miroslav's Site",
     "menu": ["Home", "Gallery", "About Us", "Contact Us", "Products"],
-    "pages": {
-        "homepage": {
+    "pages": [{
             "id": "home",
             "menuName": "Home",
             "pageTitle": "Home Page",
             "body": "some body text on the home page"
+
         },
-        "gallery": {
+        {
             "id": "gallery",
             "menuName": "Gallery",
             "pageTitle": "Gallery",
             "body": "some body text on the gallery page"
+
         },
-        "aboutus": {
+        {
             "id": "about",
             "menuName": "About Us",
             "pageTitle": "About Us",
             "body": "some body text on the about us page"
+
         },
-        "contactus": {
+        {
             "id": "contact",
             "menuName": "Contact Us",
             "pageTitle": "Contact Us",
             "body": "some body text on the contact us page"
+
         },
-        "products": {
+        {
             "id": "products",
             "menuName": "Products",
             "pageTitle": "Our Products",
@@ -39,23 +42,28 @@
                     "models": [
                         {
                             "modelname": "GSX-R600",
-                            "modelid": "r600"
+                            "modelid": "r600",
+                            "desc": "GSX-R600 desciption text"
                         },
                         {
                             "modelname": "GSX-R750",
-                            "modelid": "r750"
+                            "modelid": "r750",
+                            "desc": "GSX-R750 desciption text"
                         },
                         {
                             "modelname": "GSX-R1000",
-                            "modelid": "r1000"
+                            "modelid": "r1000",
+                            "desc": "GSX-R1000 desciption text"
                         },
                         {
                             "modelname": "GSX-R1250",
-                            "modelid": "r1250"
+                            "modelid": "r1250",
+                            "desc": "GSX-R1250 desciption text"
                         },
                         {
                             "modelname": "Hayabusa",
-                            "modelid": "hbs"
+                            "modelid": "hbs",
+                            "desc": "Hayabusa desciption text"
                         }
                     ]
                 },
@@ -65,23 +73,28 @@
                     "models": [
                         {
                             "modelname": "YZF-R6",
-                            "modelid": "r6"
+                            "modelid": "r6",
+                            "desc": "YZF-R6 desciption text"
                         },
                         {
                             "modelname": "YZF-R1",
-                            "modelid": "r1"
+                            "modelid": "r1",
+                            "desc": "YZF-R1 desciption text"
                         },
                         {
                             "modelname": "FZ1",
-                            "modelid": "fz1"
+                            "modelid": "fz1",
+                            "desc": "FZ1 desciption text"
                         },
                         {
                             "modelname": "FZ-09",
-                            "modelid": "fz09"
+                            "modelid": "fz09",
+                            "desc": "FZ-09 desciption text"
                         },
                         {
                             "modelname": "FZ6R",
-                            "modelid": "fz6r"
+                            "modelid": "fz6r",
+                            "desc": "FZ6R desciption text"
                         }
                     ]
                 },
@@ -91,23 +104,27 @@
                     "models": [
                         {
                             "modelname": "899 Panigale",
-                            "modelid": "899p"
+                            "modelid": "899p",
+                            "desc": "899 Panigale desciption text"
                         },
                         {
                             "modelname": "1199 Panigale",
-                            "modelid": "1199p"
+                            "modelid": "1199p",
+                            "desc": "1199 Panigale desciption text"
                         },
                         {
                             "modelname": "1199 Panigale S",
-                            "modelid": "1199ps"
+                            "modelid": "1199ps",
+                            "desc": "1199 Panigale S desciption text"
                         },
                         {
                             "modelname": "1199 Panigale R",
-                            "modelid": "1199pr"
+                            "modelid": "1199pr",
+                            "desc": "1199 Panigale R desciption text"
                         }
                     ]
                 }
             ]
         }
-    }
+    ]
 }
