@@ -1,0 +1,113 @@
+{
+    "name": "Miro",
+    "siteName": "Miroslav's Site",
+    "menu": ["Home", "Gallery", "About Us", "Contact Us", "Products"],
+    "pages": {
+        "homepage": {
+            "id": "home",
+            "menuName": "Home",
+            "pageTitle": "Home Page",
+            "body": "some body text on the home page"
+        },
+        "gallery": {
+            "id": "gallery",
+            "menuName": "Gallery",
+            "pageTitle": "Gallery",
+            "body": "some body text on the gallery page"
+        },
+        "aboutus": {
+            "id": "about",
+            "menuName": "About Us",
+            "pageTitle": "About Us",
+            "body": "some body text on the about us page"
+        },
+        "contactus": {
+            "id": "contact",
+            "menuName": "Contact Us",
+            "pageTitle": "Contact Us",
+            "body": "some body text on the contact us page"
+        },
+        "products": {
+            "id": "products",
+            "menuName": "Products",
+            "pageTitle": "Our Products",
+            "body": "some body text on the product page",
+            "productlist": [
+                {
+                    "productname": "Suzuki",
+                    "productid": "sz",
+                    "models": [
+                        {
+                            "modelname": "GSX-R600",
+                            "modelid": "r600"
+                        },
+                        {
+                            "modelname": "GSX-R750",
+                            "modelid": "r750"
+                        },
+                        {
+                            "modelname": "GSX-R1000",
+                            "modelid": "r1000"
+                        },
+                        {
+                            "modelname": "GSX-R1250",
+                            "modelid": "r1250"
+                        },
+                        {
+                            "modelname": "Hayabusa",
+                            "modelid": "hbs"
+                        }
+                    ]
+                },
+                {
+                    "productname": "Yamaha",
+                    "productid": "ym",
+                    "models": [
+                        {
+                            "modelname": "YZF-R6",
+                            "modelid": "r6"
+                        },
+                        {
+                            "modelname": "YZF-R1",
+                            "modelid": "r1"
+                        },
+                        {
+                            "modelname": "FZ1",
+                            "modelid": "fz1"
+                        },
+                        {
+                            "modelname": "FZ-09",
+                            "modelid": "fz09"
+                        },
+                        {
+                            "modelname": "FZ6R",
+                            "modelid": "fz6r"
+                        }
+                    ]
+                },
+                {
+                    "productname": "Ducati",
+                    "productid": "dc",
+                    "models": [
+                        {
+                            "modelname": "899 Panigale",
+                            "modelid": "899p"
+                        },
+                        {
+                            "modelname": "1199 Panigale",
+                            "modelid": "1199p"
+                        },
+                        {
+                            "modelname": "1199 Panigale S",
+                            "modelid": "1199ps"
+                        },
+                        {
+                            "modelname": "1199 Panigale R",
+                            "modelid": "1199pr"
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}
