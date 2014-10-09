@@ -1,1 +1,2 @@
 // Miroslav Georgiev
+"use strict";

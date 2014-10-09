@@ -41,10 +41,11 @@
         <script type="text/javascript">
             // Miroslav Georgiev
             // javascript read a JSON file and populate a second dropdown based on the selection of the first one
+            "use strict";
 
             var obj;
             var objURL = "data/data.json";
-            //var xmlhttp;
+            var xmlhttp;
 
             if (window.XMLHttpRequest)
                 xmlhttp = new XMLHttpRequest; // code for IE7+, Firefox, Chrome, Opera, Safari
@@ -87,13 +88,13 @@
                 if (window.attachEvent)
                 {
                     // for IE8-
-                    selectionOne.attachEvent("onchange", function () {handleDropDownSelection(selectionOne, selectionTwo, products, "Please select a brand first");}, false);
+                    selectionOne.attachEvent("onchange", function () {handleBrandSelection(selectionOne, selectionTwo, products, "Please select a brand first");}, false);
                     selectionTwo.attachEvent("onchange", function () {handleModelSelection(selectionTwo);}, false);
                 }
                 else
                 {
                     // for all IE9+, FF, Chrome, Opera, Safari
-                    selectionOne.addEventListener("change", function () {handleDropDownSelection(selectionOne, selectionTwo, products, "Please select a brand first");}, false);
+                    selectionOne.addEventListener("change", function () {handleBrandSelection(selectionOne, selectionTwo, products, "Please select a brand first");}, false);
                     selectionTwo.addEventListener("change", function () {handleModelSelection(selectionTwo);}, false);
                 }
             }
@@ -101,34 +102,41 @@
             var currentIndex = 0;
             var currentValue;
             var currentText;
+            var opts; // var to store the values for the second drop down
+            var desc = document.getElementById("modeldesc");
+            
             // handle drop down selection
-            function handleDropDownSelection(firstSelect, secondSelect, arrOptions, str)
+            function handleBrandSelection(firstSelect, secondSelect, arrOptions, str)
             {
                 currentIndex = firstSelect.selectedIndex; // get the currently selected index in the first drop down
                 currentValue = firstSelect.options[currentIndex].value; // get the currently selected value in the first drop down
                 currentText = firstSelect.options[currentIndex].text; // get the currently selected text in the first drop down
-                var opts; // var to store the values for the second drop down
-
-                // get the matching array for the second drop down based on the selected value in the first drop down
-                for (var i = 0, len = arrOptions.length; i < len; i++)
-                {
-                    if (currentValue === arrOptions[i].productid)
-                        opts = arrOptions[i].models;
-                }
-
+                opts = null; // reset the options
+                desc.innerHTML = ""; // reset the desc
+                desc.style.display = "none"; // hide the desc element
+                
                 // first clear the drop down before populating it with new values
                 if (secondSelect.length > 1)
                     clearDropDown(secondSelect);
-
-                if (opts)
+                
+                if (currentIndex > 0)
                 {
-                    // populate the second drop down with the appropriate options
-                    secondSelect.options[0].text = "--Select--";
-                    secondSelect.options[0].value = "";
-                    secondSelect.disabled = false;
-                    for (var i = 0, len = opts.length; i < len; i++)
-                        secondSelect.options[secondSelect.options.length] = new Option(opts[i].modelname, opts[i].modelid);
-                    
+                    // get the matching array for the second drop down based on the selected value in the first drop down
+                    for (var i = 0, len = arrOptions.length; i < len; i++)
+                    {
+                        if (currentValue === arrOptions[i].productid)
+                            opts = arrOptions[i].models;
+                    }
+
+                    if (opts)
+                    {
+                        // populate the second drop down with the appropriate options
+                        secondSelect.options[0].text = "--Select--";
+                        secondSelect.options[0].value = "";
+                        secondSelect.disabled = false;
+                        for (var i = 0, len = opts.length; i < len; i++)
+                            secondSelect.options[secondSelect.options.length] = new Option(opts[i].modelname, opts[i].modelid);
+                    }
                 }
                 else
                 {
@@ -145,7 +153,11 @@
             {
                 currentIndex = sel.selectedIndex; // get the currently selected index
                 currentValue = sel.options[currentIndex].value; // get the currently selected value
-                
+                if (opts)
+                {
+                    desc.innerHTML = opts[currentIndex - 1].desc;
+                    desc.style.display = "block";
+                }
             }
 
             // clear drop downs (clears everything from the second option to the end)
