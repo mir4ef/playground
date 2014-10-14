@@ -77,25 +77,25 @@
                         products = response.pages[i].productlist;
                 }
 
-                var selectionOne = document.getElementById("ddone");
-                var selectionTwo = document.getElementById("ddtwo");
+                var brandSelection = document.getElementById("ddone");
+                var modelSelection = document.getElementById("ddtwo");
                 // populate the first drop down
                 for (var i = 0, len = products.length; i < len; i++)
-                    selectionOne.options[selectionOne.options.length] = new Option(products[i].productname, products[i].productid);
+                    brandSelection.options[brandSelection.options.length] = new Option(products[i].productname, products[i].productid);
 
                 // attach events to the elements
                 // check if the browser supports addEventListener first
                 if (window.attachEvent)
                 {
                     // for IE8-
-                    selectionOne.attachEvent("onchange", function () {handleBrandSelection(selectionOne, selectionTwo, products, "Please select a brand first");}, false);
-                    selectionTwo.attachEvent("onchange", function () {handleModelSelection(selectionTwo);}, false);
+                    brandSelection.attachEvent("onchange", function () {handleBrandSelection(brandSelection, modelSelection, products, "Please select a brand first");}, false);
+                    modelSelection.attachEvent("onchange", function () {handleModelSelection(modelSelection);}, false);
                 }
                 else
                 {
                     // for all IE9+, FF, Chrome, Opera, Safari
-                    selectionOne.addEventListener("change", function () {handleBrandSelection(selectionOne, selectionTwo, products, "Please select a brand first");}, false);
-                    selectionTwo.addEventListener("change", function () {handleModelSelection(selectionTwo);}, false);
+                    brandSelection.addEventListener("change", function () {handleBrandSelection(brandSelection, modelSelection, products, "Please select a brand first");}, false);
+                    modelSelection.addEventListener("change", function () {handleModelSelection(modelSelection);}, false);
                 }
             }
 
@@ -106,18 +106,18 @@
             var desc = document.getElementById("modeldesc");
             
             // handle drop down selection
-            function handleBrandSelection(firstSelect, secondSelect, arrOptions, str)
+            function handleBrandSelection(brandSelection, modelSelection, arrOptions, str)
             {
-                currentIndex = firstSelect.selectedIndex; // get the currently selected index in the first drop down
-                currentValue = firstSelect.options[currentIndex].value; // get the currently selected value in the first drop down
-                currentText = firstSelect.options[currentIndex].text; // get the currently selected text in the first drop down
+                currentIndex = brandSelection.selectedIndex; // get the currently selected index in the first drop down
+                currentValue = brandSelection.options[currentIndex].value; // get the currently selected value in the first drop down
+                currentText = brandSelection.options[currentIndex].text; // get the currently selected text in the first drop down
                 opts = null; // reset the options
                 desc.innerHTML = ""; // reset the desc
                 desc.style.display = "none"; // hide the desc element
                 
                 // first clear the drop down before populating it with new values
-                if (secondSelect.length > 1)
-                    clearDropDown(secondSelect);
+                if (modelSelection.length > 1)
+                    clearDropDown(modelSelection);
                 
                 if (currentIndex > 0)
                 {
@@ -131,20 +131,20 @@
                     if (opts)
                     {
                         // populate the second drop down with the appropriate options
-                        secondSelect.options[0].text = "--Select--";
-                        secondSelect.options[0].value = "";
-                        secondSelect.disabled = false;
+                        modelSelection.options[0].text = "--Select--";
+                        modelSelection.options[0].value = "";
+                        modelSelection.disabled = false;
                         for (var i = 0, len = opts.length; i < len; i++)
-                            secondSelect.options[secondSelect.options.length] = new Option(opts[i].modelname, opts[i].modelid);
+                            modelSelection.options[modelSelection.options.length] = new Option(opts[i].modelname, opts[i].modelid);
                     }
                 }
                 else
                 {
                     // disable the second drop down and reset the selection
-                    secondSelect.disabled = true;
-                    secondSelect.selectedIndex = 0;
-                    secondSelect.options[0].text = str;
-                    secondSelect.options[0].value = "";
+                    modelSelection.disabled = true;
+                    modelSelection.selectedIndex = 0;
+                    modelSelection.options[0].text = str;
+                    modelSelection.options[0].value = "";
                 }
             }
             
@@ -153,6 +153,12 @@
             {
                 currentIndex = sel.selectedIndex; // get the currently selected index
                 currentValue = sel.options[currentIndex].value; // get the currently selected value
+                if (currentIndex === 0)
+                {
+                    desc.innerHTML = ""; // reset the desc
+                    desc.style.display = "none"; // hide the desc element
+                    return;
+                }
                 if (opts)
                 {
                     desc.innerHTML = opts[currentIndex - 1].desc;

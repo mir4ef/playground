@@ -5,6 +5,7 @@
     "pages": [{
             "id": "home",
             "menuName": "Home",
+            "pageTemplate": "main",
             "pageTitle": "Home Page",
             "body": "some body text on the home page"
 
@@ -12,6 +13,7 @@
         {
             "id": "gallery",
             "menuName": "Gallery",
+            "pageTemplate": "gallery",
             "pageTitle": "Gallery",
             "body": "some body text on the gallery page"
 
@@ -19,6 +21,7 @@
         {
             "id": "about",
             "menuName": "About Us",
+            "pageTemplate": "main",
             "pageTitle": "About Us",
             "body": "some body text on the about us page"
 
@@ -26,6 +29,7 @@
         {
             "id": "contact",
             "menuName": "Contact Us",
+            "pageTemplate": "main",
             "pageTitle": "Contact Us",
             "body": "some body text on the contact us page"
 
@@ -33,6 +37,7 @@
         {
             "id": "products",
             "menuName": "Products",
+            "pageTemplate": "products",
             "pageTitle": "Our Products",
             "body": "some body text on the product page",
             "productlist": [
