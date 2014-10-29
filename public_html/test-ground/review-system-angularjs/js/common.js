@@ -18,15 +18,15 @@ app.controller("PageCtrl", ["$scope", "$http", function ($scope, $http)
             $scope.starsObj = {}; // object to keep track of votes per star
             $scope.starArr = []; // array to keep the rating system i.e. 5, 10, etc. stars
             // populate the array with the rating system
-            for (var l = data.maxstars; l--;)
-                $scope.starArr.push(l+1);
+            for (var l = data.maxstars; l--; )
+                $scope.starArr.push(l + 1);
             // loop through the array to set the right number of stars to keep track of
             angular.forEach($scope.starArr, function (star)
             {
                 if (!$scope.starsObj[star])
                     $scope.starsObj[star] = 0;
             });
-            
+
             var len = $scope.reviews.length;
             var starRating;
             var totalScore = 0;
@@ -49,22 +49,23 @@ app.controller("PageCtrl", ["$scope", "$http", function ($scope, $http)
 /*                Directives                 */
 /*********************************************/
 // directive to fill up the stars based on the rating score
-app.directive("filling", ["$timeout", function (timer) {
-    return {
-        restrict: "A",
-        link: function (scope, element, attrs)
-        {
-            var setFiller = function()
+app.directive("filling", ["$timeout", function (timer)
+    {
+        return {
+            restrict: "A",
+            link: function (scope, element, attrs)
             {
-                attrs.$observe('starClass', function ()
+                var setFiller = function ()
                 {
-                    var currentRate = element[0].getAttribute("data-rating");
-                    var maxRate = scope.starArr.length;
-                    scope.setWidth = (currentRate / maxRate) * 100;
-                    return scope.setWidth;
-                });
-            };
-            timer(setFiller, 200); // delay the directive execution to give the controller enough time to render the DOM
-        }
-    };
-}]);
+                    attrs.$observe('starClass', function ()
+                    {
+                        var currentRate = element[0].getAttribute("data-rating");
+                        var maxRate = scope.starArr.length;
+                        scope.setWidth = (currentRate / maxRate) * 100;
+                        return scope.setWidth;
+                    });
+                };
+                timer(setFiller, 200); // delay the directive execution to give the controller enough time to render the DOM
+            }
+        };
+    }]);
