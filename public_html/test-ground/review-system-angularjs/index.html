@@ -39,7 +39,7 @@
         <aside>
             <h3>{{reviews.length}} Customer Reviews</h3>
             <div>
-                <div class="sectionHead">
+                <h4 class="sectionHead">
                     <div class="stars" data-rating="{{averageRating}}" star-class="stars" filling>
                         <ul>
                             <li ng-repeat="star in starArr"><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
@@ -49,7 +49,7 @@
                         </ul>
                     </div>
                     {{averageRating}} Average
-                </div>
+                </h4>
                 <div class="votesPerStar" ng-repeat="star in starArr">
                     <label>{{star}} stars</label>
                     <div class="progress"><div class="progress-bar progress-bar-grey" role="progressbar" aria-valuenow="{{(starsObj[star]/maxVotes)*100}}" aria-valuemin="0" aria-valuemax="100" ng-style="{'width': (starsObj[star]/maxVotes)*100 + '%'}"></div></div>
@@ -57,11 +57,11 @@
                 </div>
             </div>
             <div>
-                <div class="sectionHead">Filter By Website:</div>
-                <div class="filtering"><a href="#">yelp</a> (3)</div>
+                <h4 class="sectionHead">Filter By Website:</h4>
+                <div class="filtering" ng-repeat="(key, value) in sourceObj"><div ng-repeat="(prop, val) in sourceObj[key]"><a ng-href="{{prop}}" target="_blank">{{key}}</a> ({{val}})</div></div>
             </div>
             <div>
-                <div class="sectionHead">Filter By Number of Stars:</div>
+                <h4 class="sectionHead">Filter By Number of Stars:</h4>
                 <div class="filtering" ng-repeat="star in starArr"><a href="#">{{star}} stars</a> ({{starsObj[star]}})</div>
             </div>
             <a href="#" class="showAll">Show All Reviews</a>

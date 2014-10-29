@@ -17,29 +17,41 @@ app.controller("PageCtrl", ["$scope", "$http", function ($scope, $http)
 
             $scope.starsObj = {}; // object to keep track of votes per star
             $scope.starArr = []; // array to keep the rating system i.e. 5, 10, etc. stars
-            // populate the array with the rating system
-            for (var l = data.maxstars; l--; )
-                $scope.starArr.push(l + 1);
-            // loop through the array to set the right number of stars to keep track of
-            angular.forEach($scope.starArr, function (star)
+            // populate the array with the rating system and set the right number of stars to keep track of in the object
+            for (var s = data.maxstars; s--; )
             {
-                if (!$scope.starsObj[star])
-                    $scope.starsObj[star] = 0;
-            });
+                $scope.starArr.push(s + 1);
+                $scope.starsObj[s + 1] = 0;
+            }
 
             var len = $scope.reviews.length;
             var starRating;
             var totalScore = 0;
             $scope.maxVotes = 0; // number to store the max number of votes for a star to use as a base to manage the star distribution
-            // loop through the ratings and get the scores
-            angular.forEach($scope.reviews, function (review)
+            $scope.sourceObj = {};
+            var sourcename;
+            var sourceurl;
+            
+            // loop through the ratings and get the scores and sources
+            for (var i = len; i--; )
             {
-                starRating = parseInt(review.rating);
+                starRating = parseInt($scope.reviews[i].rating);
                 totalScore += starRating; // sum all ratings
                 $scope.starsObj[starRating]++; // keep count of how many votes each star received
                 if ($scope.maxVotes < $scope.starsObj[starRating])
                     $scope.maxVotes = $scope.starsObj[starRating];
-            });
+                
+                // get, set and keep count of the sources
+                sourcename = $scope.reviews[i].sourcename;
+                sourceurl = $scope.reviews[i].sourceurl;
+                if (!$scope.sourceObj[sourcename])
+                {
+                    $scope.sourceObj[sourcename] = {};
+                    $scope.sourceObj[sourcename][sourceurl] = 1;
+                }
+                else
+                    $scope.sourceObj[sourcename][sourceurl]++;
+            }
             $scope.averageRating = totalScore / len;
             if ($scope.averageRating % 1 !== 0)
                 $scope.averageRating = $scope.averageRating.toFixed(1); // round the avg score if it is not an integer
