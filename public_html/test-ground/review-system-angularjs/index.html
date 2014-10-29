@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr" ng-app="rating">
+    <head>
+        <title>Reviews with Partial Star Rating</title>
+        <meta charset="UTF-8" />
+        <meta name="description" content="Reviews with Partial Star Rating using AngularJS" />
+        <meta name="keywords" content="reviews, angularjs, partial star rating" />
+        <meta name="author" content="Miroslav Georgiev" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <!-- START Stylesheet Declaration -->
+        <link rel="stylesheet" href="libs/bootstrap/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="css/common.css" media="all" />
+        <link rel="stylesheet" href="css/print.css" media="print" />
+        <!-- END Stylesheet Declaration -->
+    </head>
+    <body ng-controller="PageCtrl">
+        <h2>Reviews</h2>
+        <main>
+            <div id="reviews" class="reviews">
+                <div class="review" ng-repeat="review in reviews | orderBy:'date':true" itemscope>
+                    <div class="rating">
+                        <div class="stars" data-rating="{{review.rating}}" star-class="stars" filling>
+                            <ul>
+                                <li ng-repeat="star in starArr"><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
+                            </ul>
+                            <ul class="stars-selected" ng-style="{'width': setWidth + '%'}">
+                                <li ng-repeat="star in starArr"><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
+                            </ul>
+                        </div>
+                        <time itemprop="date" datetime="{{review.date}}">{{review.date | date:'MMMM d, yyyy'}}</time>
+                    </div>
+                    <h4>{{review.title}}</h4>
+                    <p>{{review.body}}</p>
+                    <div class="author">-<a href="#">&nbsp;<span itemprop="name">{{review.author}}</span></a></div>
+                </div>
+            </div>
+        </main>
+        <aside>
+            <h3>{{reviews.length}} Customer Reviews</h3>
+            <div>
+                <div class="sectionHead">
+                    <div class="stars" data-rating="{{averageRating}}" star-class="stars" filling>
+                        <ul>
+                            <li ng-repeat="star in starArr"><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
+                        </ul>
+                        <ul class="stars-selected" ng-style="{'width': setWidth +'%'}">
+                            <li ng-repeat="star in starArr"><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
+                        </ul>
+                    </div>
+                    {{averageRating}} Average
+                </div>
+                <div class="votesPerStar" ng-repeat="star in starArr">
+                    <label>{{star}} stars</label>
+                    <div class="progress"><div class="progress-bar progress-bar-grey" role="progressbar" aria-valuenow="{{(starsObj[star]/maxVotes)*100}}" aria-valuemin="0" aria-valuemax="100" ng-style="{'width': (starsObj[star]/maxVotes)*100 + '%'}"></div></div>
+                    <span>({{starsObj[star]}})</span>
+                </div>
+            </div>
+            <div>
+                <div class="sectionHead">Filter By Website:</div>
+                <div class="filtering"><a href="#">yelp</a> (3)</div>
+            </div>
+            <div>
+                <div class="sectionHead">Filter By Number of Stars:</div>
+                <div class="filtering" ng-repeat="star in starArr"><a href="#">{{star}} stars</a> ({{starsObj[star]}})</div>
+            </div>
+            <a href="#" class="showAll">Show All Reviews</a>
+        </aside>
+
+        <!-- START JavaScript Declaration -->
+        <script src="libs/angularjs/angular.min.js"></script>
+        <script src="js/common.js"></script>
+        <!-- END JavaScript Declaration -->
+    </body>
+</html>

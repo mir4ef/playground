@@ -5,7 +5,7 @@
     "pages": [{
             "id": "home",
             "menuName": "Home",
-            "pageTemplate": "main",
+            "pageTemplate": "main-view",
             "pageTitle": "Home Page",
             "body": "some body text on the home page"
 
@@ -13,7 +13,7 @@
         {
             "id": "gallery",
             "menuName": "Gallery",
-            "pageTemplate": "gallery",
+            "pageTemplate": "gallery-view",
             "pageTitle": "Gallery",
             "body": "some body text on the gallery page"
 
@@ -21,7 +21,7 @@
         {
             "id": "about",
             "menuName": "About Us",
-            "pageTemplate": "main",
+            "pageTemplate": "main-view",
             "pageTitle": "About Us",
             "body": "some body text on the about us page"
 
@@ -29,7 +29,7 @@
         {
             "id": "contact",
             "menuName": "Contact Us",
-            "pageTemplate": "main",
+            "pageTemplate": "main-view",
             "pageTitle": "Contact Us",
             "body": "some body text on the contact us page"
 
@@ -37,7 +37,7 @@
         {
             "id": "products",
             "menuName": "Products",
-            "pageTemplate": "products",
+            "pageTemplate": "products-view",
             "pageTitle": "Our Products",
             "body": "some body text on the product page",
             "productlist": [

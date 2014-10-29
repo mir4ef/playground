@@ -1,0 +1,198 @@
+/* Miroslav Georgiev */
+
+@-ms-viewport{width: device-width;}
+@-o-viewport {width: device-width;}
+/*********************************************/
+/*            Common Declarations            */
+/*********************************************/
+html
+{
+    margin: 0 auto;
+    max-width: 1000px;
+    text-align: left;
+}
+body
+{
+    font-size: 0; /* removes white space between inline-block elemets */
+}
+h2
+{
+    font-size: 24px;
+    font-weight: bold;
+}
+/*********************************************/
+/*            Reviews Declarations           */
+/*********************************************/
+main
+{
+    display: inline-block;
+    font-size: 12px;
+    margin-right: 5%;
+    vertical-align: top;
+    width: 75%;
+}
+.reviews
+{
+    border: 2px solid #ddd;
+    padding: 20px 10px;
+}
+.review
+{
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+}
+.review:last-child
+{
+    border: 0 none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+.rating
+{
+
+}
+.stars
+{
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+}
+.stars ul
+{
+    font-size: 0;
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.stars-selected 
+{
+    position: absolute;
+    top: 0;
+    width: 0;
+}
+.stars ul li
+{
+    display: inline-block;
+}
+.stars a > span
+{
+    color: #ccc;
+    cursor: context-menu;
+    font-size: 20px;
+}
+.stars-selected a > span
+{
+    color: yellow;
+}
+.rating time
+{
+    color: #454545;
+    font-size: 11px;
+    font-style: italic;
+    font-weight: bold;
+}
+.review h4
+{
+    font-size: 14px;
+    font-weight: bold;
+}
+.review p
+{
+    color: #bbb;
+    font-size: 12px;
+}
+.author
+{
+    text-align: right;
+}
+.author a
+{
+    font-size: 12px;
+}
+/*********************************************/
+/*             Side Declarations             */
+/*********************************************/
+aside
+{
+    border: 1px solid #000;
+    display: inline-block;
+    font-size: 12px;
+    padding-bottom: 30px;
+    width: 20%;
+}
+aside h3
+{
+    background-color: #666;
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    margin-top: 0;
+    padding: 5px;
+}
+.sectionHead
+{
+    font-size: 14px;
+    font-weight: bold;
+    margin-left: 10px;
+}
+.votesPerStar
+{
+    margin-left: 10px;
+    margin-top: 5px;
+}
+.votesPerStar:last-child
+{
+    margin-bottom: 30px;
+}
+.votesPerStar label
+{
+    width: 42px;
+}
+.votesPerStar .progress
+{
+    display: inline-block;
+    margin-bottom: 0;
+    vertical-align: middle;
+    width: 65%;
+}
+.progress-bar-grey
+{
+    background-color: #ccc;
+}
+.votesPerStar span
+{
+    color: #ccc;
+}
+.filtering
+{
+    margin-left: 10px;
+}
+.filtering:last-child
+{
+    margin-bottom: 30px;
+}
+.showAll, .showAll:hover
+{
+    color: #bbb;
+    font-weight: bold;
+    margin-left: 10px;
+    text-decoration: none;
+}
+/*********************************************/
+/*          Responsive Declarations          */
+/*********************************************/
+@media screen and (max-width: 799px)
+{
+    main, aside
+    {
+        display: block;
+        width: 100%;
+    }
+    .votesPerStar .progress
+    {
+        width: 80%;
+    }
+}

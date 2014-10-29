@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+    <head>
+        <title>Miroslav Georgiev - Form Dropdown Menu</title>
+        <meta charset="utf-8" />
+        <meta name="description" content="Form Dropdown Menu" />
+        <meta name="keywords" content="dropdown menu, select menu,drop down menu" />
+        <meta name="author" content="Miroslav Georgiev" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <link rel="stylesheet" href="../css/common.css" media="all" />
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <form></form>
+
+        <script src="../libs/jquery/jquery-1.11.1.min.js"></script>
+        <script>
+            // Miroslav Georgiev
+            // dropdown menu without using select
+            // dynamically populating dropdown menus by loading data from an XML file with an AJAX call using jQuery
+            "use strict";
+            
+            $(document).ready(function ()
+            {
+                // load the data for the dropdowns and populate them
+                $.ajax({
+                    type: "get",
+                    url: "../data/data.xml",
+                    dataType: "xml",
+                    success: function (xml)
+                    {
+                        $(xml).find('dropdown').each(function ()
+                        {
+                            var row = "<div class='row'>";
+                            var label = "<label>";
+                            var title = "";
+                            var menu = "<div class='dropdown-menu'><a class='current-selection'>";
+                            var menuoptions = "<ul class='menu-options'>";
+                            var option = "";
+
+                            // loop through each label
+                            $(this).find("label").each(function ()
+                            {
+                                title = $(this).text();
+                                row = row + label + title + ":</label>" + menu;
+                            });
+
+                            // loop through each option
+                            $(this).find("option").each(function (index)
+                            {
+                                option = $(this).text();
+                                if (index === 0)
+                                    row = row + option + "</a><img src='../assets/arrow-down.png' alt='icon' />" + menuoptions + "<li class='selected'><a href='#'>" + option + "</a></li>";
+                                else
+                                    row = row + "<li><a href='#'>" + option + "</a></li>";
+                            });
+                            row = row + "</ul></div>";
+                            $("form").append(row);
+
+                            // show the menu options on click
+                            $(".current-selection, .dropdown-menu img").click(function ()
+                            {
+                                $(this).parent().children(".menu-options").show();
+                            });
+
+                            // handle option selections
+                            $(".menu-options li").click(function ()
+                            {
+                                // check if the option has already been selected
+                                if (!$(this).hasClass("selected"))
+                                {
+                                    // update the menu header with the selection
+                                    var selection = $(this).children().text();
+                                    var menuheader = $(this).parent().parent().children("a");
+                                    $(menuheader).text(selection);
+
+                                    // deselect the highlighted option
+                                    $(this).parent().children().removeClass("selected");
+
+                                    // highlight the selected option in the dropdown
+                                    $(this).addClass("selected");
+                                }
+
+                                // hide the menu after a selection has been made
+                                $(this).parent().hide();
+                            });
+
+                            // hide the menu if clicked outside
+                            $("html").on("mouseup touchend", function (e)
+                            {
+                                if ($(".menu-options").has(e.target).length === 0)
+                                    $(".menu-options").hide();
+                            });
+                        });
+                    },
+                    error: function ()
+                    {
+                        var msg = "Could not load the data! Please check tha path or try again later.";
+                        $("form").append(msg);
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>
