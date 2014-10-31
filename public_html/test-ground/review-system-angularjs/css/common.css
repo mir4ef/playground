@@ -181,6 +181,10 @@ aside h3
     margin-left: 10px;
     text-decoration: none;
 }
+aside a
+{
+    cursor: pointer;
+}
 /*********************************************/
 /*          Responsive Declarations          */
 /*********************************************/

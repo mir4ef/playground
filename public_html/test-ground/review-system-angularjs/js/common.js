@@ -24,16 +24,15 @@ app.controller("PageCtrl", ["$scope", "$http", function ($scope, $http)
                 $scope.starsObj[s + 1] = 0;
             }
 
-            var len = $scope.reviews.length;
+            $scope.len = $scope.reviews.length;
             var starRating;
             var totalScore = 0;
             $scope.maxVotes = 0; // number to store the max number of votes for a star to use as a base to manage the star distribution
-            $scope.sourceObj = {};
+            $scope.sourceObj = {}; // object to keep track of the sources and their number of occurence
             var sourcename;
-            var sourceurl;
             
             // loop through the ratings and get the scores and sources
-            for (var i = len; i--; )
+            for (var i = $scope.len; i--; )
             {
                 starRating = parseInt($scope.reviews[i].rating);
                 totalScore += starRating; // sum all ratings
@@ -43,18 +42,24 @@ app.controller("PageCtrl", ["$scope", "$http", function ($scope, $http)
                 
                 // get, set and keep count of the sources
                 sourcename = $scope.reviews[i].sourcename;
-                sourceurl = $scope.reviews[i].sourceurl;
                 if (!$scope.sourceObj[sourcename])
                 {
-                    $scope.sourceObj[sourcename] = {};
-                    $scope.sourceObj[sourcename][sourceurl] = 1;
+                    $scope.sourceObj[sourcename] = 1;
                 }
                 else
-                    $scope.sourceObj[sourcename][sourceurl]++;
+                    $scope.sourceObj[sourcename]++;
             }
-            $scope.averageRating = totalScore / len;
+            $scope.averageRating = totalScore / $scope.len;
             if ($scope.averageRating % 1 !== 0)
                 $scope.averageRating = $scope.averageRating.toFixed(1); // round the avg score if it is not an integer
+            
+            $scope.filters = {};
+            
+            $scope.limit = 3;
+            $scope.setVisibleItems = function (num)
+            {
+                $scope.limit = num;
+            }
         });
     }]);
 /*********************************************/
@@ -77,7 +82,7 @@ app.directive("filling", ["$timeout", function (timer)
                         return scope.setWidth;
                     });
                 };
-                timer(setFiller, 200); // delay the directive execution to give the controller enough time to render the DOM
+                timer(setFiller, 250); // delay the directive execution to give the controller enough time to render the DOM
             }
         };
     }]);
