@@ -15,8 +15,8 @@ app.controller("PageCtrl", ["$scope", "$http", function ($scope, $http)
         {
             $scope.reviews = data.reviews;
 
-            $scope.starsObj = {}; // object to keep track of votes per star
-            $scope.starArr = []; // array to keep the rating system i.e. 5, 10, etc. stars
+            $scope.starsObj = {}; // an object to keep track of votes per star
+            $scope.starArr = []; // an array to keep the rating system i.e. 5, 10, etc. stars
             // populate the array with the rating system and set the right number of stars to keep track of in the object
             for (var s = data.maxstars; s--; )
             {
@@ -27,8 +27,8 @@ app.controller("PageCtrl", ["$scope", "$http", function ($scope, $http)
             $scope.len = $scope.reviews.length;
             var starRating;
             var totalScore = 0;
-            $scope.maxVotes = 0; // number to store the max number of votes for a star to use as a base to manage the star distribution
-            $scope.sourceObj = {}; // object to keep track of the sources and their number of occurence
+            $scope.maxVotes = 0; // a number to store the max number of votes for a star to use as a base to manage the star distribution
+            $scope.sourceObj = {}; // an object to keep track of the sources and their number of occurence
             var sourcename;
             
             // loop through the ratings and get the scores and sources
@@ -53,13 +53,23 @@ app.controller("PageCtrl", ["$scope", "$http", function ($scope, $http)
             if ($scope.averageRating % 1 !== 0)
                 $scope.averageRating = $scope.averageRating.toFixed(1); // round the avg score if it is not an integer
             
-            $scope.filters = {};
+            $scope.filters = {}; // an object to store the filter requests i.e. # of stars, source, etc.
             
-            $scope.limit = 3;
+            $scope.defaultLimit = 3; // a number to define the default items to display
+            $scope.limit = $scope.defaultLimit; // set a limit how many reviews to show at a time. Default it to defaultLimit
             $scope.setVisibleItems = function (num)
             {
+                //console.log(num);
+                //console.log($scope.filtered);
                 $scope.limit = num;
-            }
+            };
+            $scope.removeFilter = function (key, value)
+            {
+                //console.log(key);
+                //console.log(value);
+                //$scope.filters[key] = "";
+                //$scope.limit = $scope.defaultLimit;
+            };
         });
     }]);
 /*********************************************/
