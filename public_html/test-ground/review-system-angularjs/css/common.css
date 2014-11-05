@@ -112,6 +112,11 @@ main
 {
     font-size: 12px;
 }
+.no-reviews
+{
+    font-size: 16px;
+    font-style: italic;
+}
 /*********************************************/
 /*             Side Declarations             */
 /*********************************************/
@@ -180,6 +185,15 @@ aside h3
     font-weight: bold;
     margin-left: 10px;
     text-decoration: none;
+}
+.clearAll
+{
+    color: #ff6633;
+    margin-left: 10px;
+}
+.clearAll:hover
+{
+    text-decoration: underline;
 }
 aside a
 {

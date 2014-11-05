@@ -18,7 +18,7 @@
         <h2>Reviews</h2>
         <main ng-cloak>
             <div id="reviews" class="reviews">
-                <div class="review" ng-repeat="review in reviews | filter:filters | orderBy:'date':true | limitTo: limit" itemscope>
+                <div class="review" ng-repeat="review in reviews | orderBy:'date':true | limitTo: limit" itemscope>
                     <div class="rating">
                         <div class="stars" data-rating="{{review.rating}}" star-class="stars" filling>
                             <ul>
@@ -34,6 +34,7 @@
                     <p>{{review.body}}</p>
                     <div class="author">-<a href="#">&nbsp;<span itemprop="name">{{review.author}}</span></a></div>
                 </div>
+                <div ng-if="reviews.length === 0" class="no-reviews">No reviews found</div>
             </div>
         </main>
         <aside ng-cloak>
@@ -58,7 +59,7 @@
             </div>
             <div class="btn-group" ng-show="filters">
                 <div class="alert alert-warning alert-dismissible" role="alert"  ng-repeat="(key, value) in filters">
-                    <button type="button" class="close" data-dismiss="alert" ng-click="removeFilter(key, value);">
+                    <button type="button" class="close" data-dismiss="alert" ng-click="removeFilter(key);">
                         <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
                     </button>
                     {{value}}
@@ -66,14 +67,14 @@
             </div>
             <div>
                 <h4 class="sectionHead">Filter By Website:</h4>
-                <div class="filtering" ng-repeat="(key, value) in sourceObj"><a ng-click="filters.sourcename = key; setVisibleItems(value);">{{key}}</a> ({{value}})</div>
+                <div class="filtering" ng-repeat="(key, value) in sourceObj"><a ng-click="filters.sourcename = key; setVisibleItems();">{{key}}</a> ({{value}})</div>
             </div>
             <div>
                 <h4 class="sectionHead">Filter By Number of Stars:</h4>
-                <div class="filtering" ng-repeat="star in starArr"><a ng-click="filters.rating = star; setVisibleItems(starsObj[star]);">{{star}} stars</a> ({{starsObj[star]}})</div>
+                <div class="filtering" ng-repeat="star in starArr"><a ng-click="filters.rating = star; setVisibleItems();">{{star}} stars</a> ({{starsObj[star]}})</div>
             </div>
-            <a ng-click="filters = {}; setVisibleItems(len);" class="showAll">Show All Reviews</a><br />
-            <a ng-click="filters = {}; limit = defaultLimit;">clear filters</a>
+            <a ng-click="filters = {}; setVisibleItems();" class="showAll">Show All Reviews</a><br />
+            <a ng-click="filters = {}; removeFilter();" class="clearAll">Clear Filters</a>
         </aside>
 
         <!-- START JavaScript Declaration -->

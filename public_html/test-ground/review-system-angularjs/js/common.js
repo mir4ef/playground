@@ -8,7 +8,7 @@ var app = angular.module("rating", []);
 /*********************************************/
 /*                Controllers                */
 /*********************************************/
-app.controller("PageCtrl", ["$scope", "$http", function ($scope, $http)
+app.controller("PageCtrl", ["$scope", "$http", "$filter", function ($scope, $http, $filter)
     {
         // make a request to get the reviews
         $http.get("data/data.json").success(function (data)
@@ -24,7 +24,7 @@ app.controller("PageCtrl", ["$scope", "$http", function ($scope, $http)
                 $scope.starsObj[s + 1] = 0;
             }
 
-            $scope.len = $scope.reviews.length;
+            var len = $scope.reviews.length;
             var starRating;
             var totalScore = 0;
             $scope.maxVotes = 0; // a number to store the max number of votes for a star to use as a base to manage the star distribution
@@ -32,7 +32,7 @@ app.controller("PageCtrl", ["$scope", "$http", function ($scope, $http)
             var sourcename;
             
             // loop through the ratings and get the scores and sources
-            for (var i = $scope.len; i--; )
+            for (var i = len; i--; )
             {
                 starRating = parseInt($scope.reviews[i].rating);
                 totalScore += starRating; // sum all ratings
@@ -49,26 +49,33 @@ app.controller("PageCtrl", ["$scope", "$http", function ($scope, $http)
                 else
                     $scope.sourceObj[sourcename]++;
             }
-            $scope.averageRating = totalScore / $scope.len;
+            $scope.averageRating = totalScore / len;
             if ($scope.averageRating % 1 !== 0)
                 $scope.averageRating = $scope.averageRating.toFixed(1); // round the avg score if it is not an integer
             
             $scope.filters = {}; // an object to store the filter requests i.e. # of stars, source, etc.
+            var setFilter = function ()
+            {
+                $scope.reviews = $filter("filter")($scope.reviews, $scope.filters);
+            };
             
             $scope.defaultLimit = 3; // a number to define the default items to display
             $scope.limit = $scope.defaultLimit; // set a limit how many reviews to show at a time. Default it to defaultLimit
-            $scope.setVisibleItems = function (num)
+            $scope.setVisibleItems = function ()
             {
-                //console.log(num);
-                //console.log($scope.filtered);
-                $scope.limit = num;
+                setFilter();
+                $scope.limit = $scope.reviews.length;
             };
-            $scope.removeFilter = function (key, value)
+            $scope.removeFilter = function (key)
             {
-                //console.log(key);
-                //console.log(value);
-                //$scope.filters[key] = "";
-                //$scope.limit = $scope.defaultLimit;
+                if (key)
+                    delete $scope.filters[key];
+                $scope.reviews = data.reviews;
+                setFilter();
+                if (Object.getOwnPropertyNames($scope.filters).length !== 0)
+                    $scope.limit = $scope.reviews.length;
+                else
+                    $scope.limit = $scope.defaultLimit;
             };
         });
     }]);
@@ -86,10 +93,13 @@ app.directive("filling", ["$timeout", function (timer)
                 {
                     attrs.$observe('starClass', function ()
                     {
-                        var currentRate = element[0].getAttribute("data-rating");
-                        var maxRate = scope.starArr.length;
-                        scope.setWidth = (currentRate / maxRate) * 100;
-                        return scope.setWidth;
+                        if (scope.starArr)
+                        {
+                            var currentRate = element[0].getAttribute("data-rating");
+                            var maxRate = scope.starArr.length;
+                            scope.setWidth = (currentRate / maxRate) * 100;
+                            return scope.setWidth;
+                        }
                     });
                 };
                 timer(setFiller, 250); // delay the directive execution to give the controller enough time to render the DOM
