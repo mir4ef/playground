@@ -1,0 +1,5 @@
+<h2>{{page.pageTitle}}</h2>
+<p>{{page.body}}</p>
+<ul class="list-group">
+    <li class="list-group-item" ng-repeat="gallery in page.galleries"><a ng-href="#{{currentPage}}/{{gallery.id}}" target="{{gallery.linkTarget}}">{{gallery.galleryName}}</a></li>
+</ul>

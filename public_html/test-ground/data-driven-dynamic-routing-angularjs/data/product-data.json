@@ -1,0 +1,26 @@
+{
+    "id": "products",
+    "pageTemplate": "products",
+    "pageTitle": "Our Products",
+    "body": "list of products and some body text on the products page",
+    "products": [
+        {
+            "id": "product1",
+            "linkTarget": "_self",
+            "productName": "product 1",
+            "dataFileType": "json"
+        },
+        {
+            "id": "product2",
+            "linkTarget": "_self",
+            "productName": "product 2",
+            "dataFileType": "json"
+        },
+        {
+            "id": "product3",
+            "linkTarget": "_self",
+            "productName": "product 3",
+            "dataFileType": "json"
+        }
+    ]
+}

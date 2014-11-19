@@ -1,0 +1,5 @@
+<h2>{{page.pageTitle}}</h2>
+<p>{{page.body}}</p>
+<ul class="list-group">
+    <li class="list-group-item" ng-repeat="portfolio in page.work"><a ng-href="#{{currentPage}}/{{portfolio.id}}" target="{{portfolio.linkTarget}}" data-sourceextention="{{portfolio.dataFileType}}">{{portfolio.projectName}}</a></li>
+</ul>

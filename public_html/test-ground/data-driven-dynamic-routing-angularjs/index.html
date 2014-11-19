@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html ng-app="app">
+    <head>
+        <title>Miroslav Georgiev</title>
+        <meta charset="UTF-8" />
+        <meta name="description" content="Miroslav Georgiev" />
+        <meta name="keywords" content="Miroslav Georgiev, miro, mir4ef" />
+        <meta name="author" content="Miroslav Georgiev" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        
+        <!-- START Stylesheet Declaration -->
+        <link rel="stylesheet" href="libs/bootstrap/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="css/common.css" />
+        <link rel="stylesheet" href="css/print.css" media="print" />
+        <!-- END Stylesheet Declaration -->
+    </head>
+    <body ng-controller="AppController">
+        <!-- START Navigation -->
+        <nav class="navbar navbar-inverse" role="navigation" ng-controller="NavigationController">
+            <div class="container-fluid">
+                <!-- Brand and toggle nav menu -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-nav">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Miro</a>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="main-nav">
+                    <ul class="nav navbar-nav">
+                        <li ng-repeat="menu in menuItems" ng-class="{active: isActive('/' + menu.id)}"><a href="#/{{menu.id}}">{{menu.menuName}}</a></li>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
+        <!-- END Navigation -->
+        
+        <!-- START Page Content -->
+        <main id="main-view" role="main" class="container-fluid" ng-view ng-cloak></main>
+        <!-- END Page Content -->
+        
+        <!-- START Footer -->
+        <footer role="contentinfo">&copy; <span class="current-year"></span>Miroslav Georgiev</footer>
+        <!-- END Footer -->
+        
+        <!-- START JavaScript Declaration -->
+        <script src="js/menu.js"></script>
+        <script src="libs/jquery/jquery-1.11.1.min.js"></script>
+        <script src="libs/bootstrap/js/bootstrap.min.js"></script>
+        <script src="libs/angularjs/angular.min.js"></script>
+        <script src="libs/angularjs/angular-animate.min.js"></script>
+        <script src="libs/angularjs/angular-resource.min.js"></script>
+        <script src="libs/angularjs/angular-route.min.js"></script>
+        <script src="js/common.js"></script>
+        <!-- END JavaScript Declaration -->
+    </body>
+</html>

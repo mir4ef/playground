@@ -1,0 +1,6 @@
+{
+    "id": "home",
+    "pageTemplate": "home",
+    "pageTitle": "Home Page",
+    "body": "some body text on the home page"
+}

@@ -1,0 +1,5 @@
+<h2>{{page.pageTitle}}</h2>
+<p>{{page.body}}</p>
+<ul class="list-group">
+    <li class="list-group-item" ng-repeat="product in page.products" ><a ng-href="#{{currentPage}}/{{product.id}}" target="{{product.linkTarget}}">{{product.productName}}</a></li>
+</ul>

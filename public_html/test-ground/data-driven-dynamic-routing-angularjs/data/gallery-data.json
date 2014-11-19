@@ -1,0 +1,26 @@
+{
+    "id": "galleries",
+    "pageTemplate": "galleries",
+    "pageTitle": "Galleries",
+    "body": "some body text on the galleries page",
+    "galleries": [
+        {
+            "id": "gallery1",
+            "linkTarget": "_self",
+            "galleryName": "gallery 1",
+            "dataFileType": "json"
+        },
+        {
+            "id": "gallery2",
+            "linkTarget": "_self",
+            "galleryName": "gallery 2",
+            "dataFileType": "json"
+        },
+        {
+            "id": "gallery3",
+            "linkTarget": "_self",
+            "galleryName": "gallery 3",
+            "dataFileType": "json"
+        }
+    ]
+}

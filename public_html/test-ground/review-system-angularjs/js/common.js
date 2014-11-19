@@ -25,27 +25,25 @@ app.controller("PageCtrl", ["$scope", "$http", "$filter", function ($scope, $htt
             }
 
             var len = $scope.reviews.length;
-            var starRating;
+            // var starRating;
             var totalScore = 0;
             $scope.maxVotes = 0; // a number to store the max number of votes for a star to use as a base to manage the star distribution
             $scope.sourceObj = {}; // an object to keep track of the sources and their number of occurence
-            var sourcename;
+            // var sourcename;
             
             // loop through the ratings and get the scores and sources
             for (var i = len; i--; )
             {
-                starRating = parseInt($scope.reviews[i].rating);
+                var starRating = parseInt($scope.reviews[i].rating);
                 totalScore += starRating; // sum all ratings
                 $scope.starsObj[starRating]++; // keep count of how many votes each star received
                 if ($scope.maxVotes < $scope.starsObj[starRating])
                     $scope.maxVotes = $scope.starsObj[starRating];
                 
                 // get, set and keep count of the sources
-                sourcename = $scope.reviews[i].sourcename;
+                var sourcename = $scope.reviews[i].sourcename;
                 if (!$scope.sourceObj[sourcename])
-                {
                     $scope.sourceObj[sourcename] = 1;
-                }
                 else
                     $scope.sourceObj[sourcename]++;
             }

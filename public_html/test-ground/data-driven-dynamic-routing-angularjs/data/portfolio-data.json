@@ -1,0 +1,26 @@
+{
+    "id": "portoflio",
+    "pageTemplate": "portfolio",
+    "pageTitle": "Our Work",
+    "body": "list of projects and some body text on the portoflio page",
+    "work": [
+        {
+            "id": "portfolio1",
+            "linkTarget": "_self",
+            "projectName": "portfolio 1",
+            "dataFileType": "json"
+        },
+        {
+            "id": "portfolio2",
+            "linkTarget": "_self",
+            "projectName": "portfolio 2",
+            "dataFileType": "json"
+        },
+        {
+            "id": "portfolio3",
+            "linkTarget": "_self",
+            "projectName": "portfolio 3",
+            "dataFileType": "json"
+        }
+    ]
+}
