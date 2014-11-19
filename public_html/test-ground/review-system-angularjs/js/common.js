@@ -1,10 +1,12 @@
 // Miroslav Georgiev
 "use strict";
 
+(function (ng, appName)
+{
 /*********************************************/
 /*                Application                */
 /*********************************************/
-var app = angular.module("rating", []);
+var app = ng.module(appName, []);
 /*********************************************/
 /*                Controllers                */
 /*********************************************/
@@ -104,3 +106,4 @@ app.directive("filling", ["$timeout", function (timer)
             }
         };
     }]);
+})(angular, "rating");

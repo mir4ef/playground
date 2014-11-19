@@ -39,6 +39,7 @@
     /*                Controllers                */
     /*********************************************/
     var appControllers = ng.module("appControllers", []);
+    
     appControllers.controller("AppController", ["$scope", function ($scope)
         {
             $scope.goback = function ()
