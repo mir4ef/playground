@@ -6,7 +6,7 @@
     /*********************************************/
     /*                Application                */
     /*********************************************/
-    var app = ng.module("app", [
+    var app = ng.module(appName, [
         "ngRoute",
         "appControllers",
         "appServices"
@@ -39,7 +39,7 @@
     /*                Controllers                */
     /*********************************************/
     var appControllers = ng.module("appControllers", []);
-    
+
     appControllers.controller("AppController", ["$scope", function ($scope)
         {
             $scope.goback = function ()
@@ -65,34 +65,26 @@
             $route.current.templateUrl = "views/" + $routeParams.pageId + "-view.html";
             $http.get($route.current.templateUrl).then(function (templateview)
             {
+                if ($routeParams.pageId === "gallery")
+                    $scope.page = PageContent.get({pageId: "/galleries/" + $routeParams.subpageId, dataFileType: ".json"});
+                else
+                    $scope.page = PageContent.get({pageId: "/" + $routeParams.pageId + "s/" + $routeParams.subpageId, dataFileType: ".json"});
                 $("main").html($compile(templateview.data)($scope));
             });
         }]);
-    appControllers.controller("GalleryPageCtrl", ["$scope", "$routeParams", "PageContent", function ($scope, $routeParams, PageContent)
+    appControllers.controller("GalleryPageCtrl", ["$scope", "$routeParams", function ($scope, $routeParams)
         {
             console.log("gallery ctrl");
-            $scope.page = PageContent.get({pageId: "/galleries/" + $routeParams.subpageId, dataFileType: "json"}, function (page)
-            {
-                // do something like setting the main image, etc.
-            });
             // do more stuff here
         }]);
-    appControllers.controller("PortfolioPageCtrl", ["$scope", "$routeParams", "PageContent", function ($scope, $routeParams, PageContent)
+    appControllers.controller("PortfolioPageCtrl", ["$scope", "$routeParams", function ($scope, $routeParams)
         {
             console.log("portfolio ctrl");
-            $scope.page = PageContent.get({pageId: "/" + $routeParams.pageId + "s/" + $routeParams.subpageId, dataFileType: "json"}, function (page)
-            {
-                // do something like setting the main project, etc.
-            });
             // do more stuff here
         }]);
-    appControllers.controller("ProductPageCtrl", ["$scope", "$routeParams", "PageContent", function ($scope, $routeParams, PageContent)
+    appControllers.controller("ProductPageCtrl", ["$scope", "$routeParams", function ($scope, $routeParams)
         {
             console.log("product ctrl");
-            $scope.page = PageContent.get({pageId: "/" + $routeParams.pageId + "s/" + $routeParams.subpageId, dataFileType: "json"}, function (page)
-            {
-                // do something like setting a default sorting order of the products
-            });
             // do more stuff here
         }]);
     /*********************************************/
@@ -102,7 +94,7 @@
 
     appServices.factory("PageContent", ["$resource", function ($resource)
         {
-            return $resource("data:pageId-data.:dataFileType");
+            return $resource("data:pageId-data:dataFileType");
         }]);
 })(angular, "app");
 /*********************************************/
