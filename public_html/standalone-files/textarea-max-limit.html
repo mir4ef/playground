@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+    <head>
+        <title>Miroslav Georgiev - Text Area Max Limit</title>
+        <meta charset="utf-8" />
+        <meta name="description" content="Text Area Max Limit" />
+        <meta name="keywords" content="text area max limit, max limit text area, text area, max limit" />
+        <meta name="author" content="Miroslav Georgiev" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <link rel="stylesheet" href="../libs/bootstrap/css/bootstrap.min.css" />
+        <style media="all">
+            .star-required
+            {
+                color: red;
+                margin-left: 5px;
+            }
+            .txt-area
+            {
+                
+            }
+            .disclaimer
+            {
+                
+            }
+            .txt-count, .txt-limit
+            {
+                
+            }
+        </style>
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <form role="form">
+            <div class="form-group">
+                <label for="txt-question1">Question 1<span class="star-required">*</span></label>
+                <textarea class="form-control input-sm txt-area" rows="5" id="txt-question1" name="txt-question1"></textarea>
+                <p class="disclaimer">(<span class="txt-count">0</span> of <span class="txt-limit">1500</span> characters)</p>
+            </div>
+            <div class="form-group">
+                <label for="txt-question2">Question 2<span class="star-required">*</span></label>
+                <textarea class="form-control input-sm txt-area" rows="5" id="txt-question2" name="txt-question2"></textarea>
+                <p class="disclaimer">(<span class="txt-count">0</span> of <span class="txt-limit">1500</span> characters)</p>
+            </div>
+        </form>
+
+        <script src="../libs/jquery/jquery-1.11.1.min.js"></script>
+        <script>
+            // Miroslav Georgiev
+            // textarea max limit
+            // limiting the maximum number of characters in a textarea and updating the counter of the current number of characters
+            "use strict";
+
+            // handle textarea max limit
+            $(".txt-area").on("keydown keyup", function ()
+            {
+                var elm = $(this);
+                var currentLength = elm.val().length; // getting the current lenght of the typed text
+                var maxLimit = parseInt(elm.next().find(".txt-limit").html()); // getting the maximum length for the text area
+                var currentCountIndicator = elm.next().find(".txt-count"); // getting the current length indicator field
+                if (currentLength > maxLimit)
+                    elm.val(elm.val().substring(0, maxLimit)); // trim the text, if it is exceeds the maximum length
+                else
+                    currentCountIndicator.html(currentLength); // update the current length indicator field
+            });
+        </script>
+    </body>
+</html>
