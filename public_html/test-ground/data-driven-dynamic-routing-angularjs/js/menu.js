@@ -6,42 +6,42 @@ var menu = {
             "menuName": "Home",
             "pageTemplate": "main",
             "pageController": "MainPageCtrl",
-            "dataFileType": "json"
+            "dataFileType": ".json"
         },
         {
             "id": "gallery",
             "menuName": "Galleries",
             "pageTemplate": "galleries",
             "pageController": "MainPageCtrl",
-            "dataFileType": "json"
+            "dataFileType": ".json"
         },
         {
             "id": "about",
             "menuName": "About Us",
             "pageTemplate": "main",
             "pageController": "MainPageCtrl",
-            "dataFileType": "json"
+            "dataFileType": ".json"
         },
         {
             "id": "portfolio",
             "menuName": "Portfolio",
             "pageTemplate": "portfolios",
             "pageController": "MainPageCtrl",
-            "dataFileType": "json"
+            "dataFileType": ".json"
         },
         {
             "id": "contact",
             "menuName": "Contact Us",
             "pageTemplate": "main",
             "pageController": "MainPageCtrl",
-            "dataFileType": "json"
+            "dataFileType": ".json"
         },
         {
             "id": "product",
             "menuName": "Products",
             "pageTemplate": "products",
             "pageController": "MainPageCtrl",
-            "dataFileType": "json"
+            "dataFileType": ".json"
         }
     ]
 };
